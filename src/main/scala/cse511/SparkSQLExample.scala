@@ -1,4 +1,4 @@
-package cse512
+package cse511
 
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql.{SaveMode, SparkSession}
@@ -13,8 +13,8 @@ object SparkSQLExample {
   def main(args: Array[String]) {
     val spark = SparkSession
       .builder()
-      .appName("CSE512-Phase2")
-      .config("spark.some.config.option", "some-value")//.master("local[*]")
+      .appName("CSE511-Project-Phase1")
+      .config("spark.some.config.option", "some-value").master("local[*]")
       .getOrCreate()
 
     paramsParser(spark, args)
@@ -59,27 +59,27 @@ object SparkSQLExample {
     val queryParam = queryParams.split(" ")
     if (queryName.equalsIgnoreCase("RangeQuery"))
     {
-      if(queryParam.length!=2) throw new ArrayIndexOutOfBoundsException("[CSE512] Query "+queryName+" needs 2 parameters but you entered "+queryParam.length)
+      if(queryParam.length!=2) throw new ArrayIndexOutOfBoundsException("[CSE511] Query "+queryName+" needs 2 parameters but you entered "+queryParam.length)
       queryResult = SpatialQuery.runRangeQuery(spark, queryParam(0), queryParam(1))
     }
     else if (queryName.equalsIgnoreCase("RangeJoinQuery"))
     {
-      if(queryParam.length!=2) throw new ArrayIndexOutOfBoundsException("[CSE512] Query "+queryName+" needs 2 parameters but you entered "+queryParam.length)
+      if(queryParam.length!=2) throw new ArrayIndexOutOfBoundsException("[CSE511] Query "+queryName+" needs 2 parameters but you entered "+queryParam.length)
       queryResult = SpatialQuery.runRangeJoinQuery(spark, queryParam(0), queryParam(1))
     }
     else if (queryName.equalsIgnoreCase("DistanceQuery"))
     {
-      if(queryParam.length!=3) throw new ArrayIndexOutOfBoundsException("[CSE512] Query "+queryName+" needs 3 parameters but you entered "+queryParam.length)
+      if(queryParam.length!=3) throw new ArrayIndexOutOfBoundsException("[CSE511] Query "+queryName+" needs 3 parameters but you entered "+queryParam.length)
       queryResult = SpatialQuery.runDistanceQuery(spark, queryParam(0), queryParam(1), queryParam(2))
     }
     else if (queryName.equalsIgnoreCase("DistanceJoinQuery"))
     {
-      if(queryParam.length!=3) throw new ArrayIndexOutOfBoundsException("[CSE512] Query "+queryName+" needs 3 parameters but you entered "+queryParam.length)
+      if(queryParam.length!=3) throw new ArrayIndexOutOfBoundsException("[CSE511] Query "+queryName+" needs 3 parameters but you entered "+queryParam.length)
       queryResult = SpatialQuery.runDistanceJoinQuery(spark, queryParam(0), queryParam(1), queryParam(2))
     }
     else
     {
-        throw new NoSuchElementException("[CSE512] The given query name "+queryName+" is wrong. Please check your input.")
+        throw new NoSuchElementException("[CSE511] The given query name "+queryName+" is wrong. Please check your input.")
     }
 
     import spark.implicits._
