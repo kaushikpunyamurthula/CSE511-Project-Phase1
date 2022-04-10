@@ -13,6 +13,25 @@ object SpatialQuery extends App{
     val p_x :: p_y :: _ = pointString.split(",").map(_.trim().toDouble).toList
 
     return ((p_x >= x1 && p_x <= x2 || p_x <= x1 && p_x >= x2) && (p_y >= y1 && p_y <= y2 || p_y <= y1 && p_y >= y2))
+
+//    if(Option(queryRectangle).getOrElse("").isEmpty|| Option(pointString).getOrElse("").isEmpty)
+//      return false
+//    var rectangleArray = queryRectangle.split(",")
+//    var rectangleX1     = rectangleArray(0).trim.toDouble
+//    var rectangleY1     = rectangleArray(1).trim.toDouble
+//    var rectangleX2     = rectangleArray(2).trim.toDouble
+//    var rectangleY2     = rectangleArray(3).trim.toDouble
+//
+//    var arrayOfPoint = pointString.split(",")
+//    var pointX = arrayOfPoint(0).trim.toDouble
+//    var pointY = arrayOfPoint(1).trim.toDouble
+//
+//    if (pointX >= rectangleX1 && pointX <= rectangleX2 && pointY >= rectangleY1 && pointY <= rectangleY2)
+//      return true
+//    else if (pointX <= rectangleX1 && pointX >= rectangleX2 && pointY <= rectangleY1 && pointY >= rectangleY2)
+//      return true
+//    else
+//      return false
   }
 
   def ST_Within(pointString1: String, pointString2: String, distance: Double): Boolean = {
@@ -24,6 +43,23 @@ object SpatialQuery extends App{
     val pointsDistance = math.pow(math.pow((x1 - x2), 2) + math.pow((y1 - y2), 2), 0.5)
 
     return (pointsDistance <= distance)
+
+//    var point1:Array[String] = new Array[String](2)
+//    point1 = pointString1.split(",")
+//    val p1_x1 = point1(0).trim().toDouble
+//    val p1_y1 = point1(1).trim().toDouble
+//
+//    var point2:Array[String] = new Array[String](2)
+//    point2 = pointString2.split(",")
+//    val p2_x2 = point2(0).trim().toDouble
+//    val p2_y2 = point2(1).trim().toDouble
+//
+//    val distEuclidean = math.pow(math.pow((p1_x1 - p2_x2), 2) + math.pow((p1_y1 - p2_y2), 2),0.5)
+//
+//    if (distEuclidean > distance)
+//      return false
+//    else
+//      return true
   }
 
   def runRangeQuery(spark: SparkSession, arg1: String, arg2: String): Long = {
